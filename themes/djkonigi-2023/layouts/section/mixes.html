@@ -1,0 +1,41 @@
+{{ define "main" }}
+
+<section class="hero is-centered">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        DJ Sets
+      </h1>
+      <!--<p class="subtitle">Drop beats, not bombs</p>-->
+    </div>
+  </div>
+</section>
+
+<section class="section boxgrid">
+  <div class="container">
+    <div class="columns entries dark is-multiline">
+      <div class="column is-four-fifths">
+        <div class="columns is-multiline">
+        {{ range .Paginator.Pages }}
+          {{ .Render "blocks-in-section-narrow"}}
+        {{ end }}
+        </div>
+      </div>{{/* /column */}}
+      <div class="column is-one-fifth sidebar">
+        {{ partial "djsets-sidebar.html" . }}
+      </div>{{/* /column */}}      
+  </div>{{/* /container */}}
+</section>
+<section class="section pagination index">
+  <div class="container">
+    <nav>{{ template "_internal/pagination.html" . }}</nav>
+  </div>
+</section>
+
+<style>
+.entry {
+  min-height: 320px;
+}
+</style>
+
+{{ end }}

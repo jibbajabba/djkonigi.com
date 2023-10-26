@@ -1,0 +1,12 @@
+baseURL = "https://konigi.com/"
+title = "DJ Konigi"
+name = "DJ Konigi"
+license = "MIT"
+licenselink = "https://github.com/.../.../LICENSE.md"
+homepage = "https://konigi.com/"
+description = ""
+tags = ["konigi", "blog"]
+features = ["sections", "pages", "summaries", "href", "featuredimg"]
+
+[author]
+  name = "Michael Angeles"

@@ -1,0 +1,5 @@
+{{/* END BODY */}}
+
+<script src="/js/konigi.js?{{ now.Unix }}"></script>
+</body>
+</html>

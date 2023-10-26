@@ -1,0 +1,63 @@
+{{ define "main" }}
+
+{{ partial "hero.html" . }}
+
+{{/* CONTENT */}}
+<section class="section article">
+  <div class="container">
+
+    <div class="columns">
+      <div class="column is-full">
+        <article>
+          <section class="article-body content">{{ .Content }}</section>
+          {{ if .Params.href }}
+          <section class="link-out">
+            {{ $url := urls.Parse .Params.href }}
+            <a href="{{ .Params.href }}" class="button is-dark">
+              {{ if eq .Section "djsets" }}
+                Listen on
+              {{ else }}
+                Visit
+              {{ end }} 
+              {{ $url.Host }}
+            </a>
+          </section>
+          {{ end }}
+          <section class="metadata single bottom">
+            <div class="pub-date">Published on {{ .Date.Format "Monday, Jan 2, 2006" }} in <a href="/{{ .Section }}" class="capitalize">{{ .Section }}</a></div>
+            <ul class="tags">
+            {{ range sort .Params.tags }}
+              <li>
+                <a href="/tags/{{ . | urlize }}">{{ . }}</a>
+              </li>
+            {{ end }}
+            </ul>
+          </section>
+        </article>
+      </div>{{/* /column */}}
+    </div>{{/* /columns */}}
+
+    {{/* Next/Prev Nav */}}
+    {{ if or .PrevInSection .NextInSection }}
+    {{/* this div holds these a tags as a unit for flex-box display */}}
+      <div class="pagination">
+        {{if .PrevInSection}}
+          <a href="{{ .PrevInSection.Permalink }}" title="{{ .PrevInSection.Title }}">
+          &lt; {{ .PrevInSection.Title }}
+          </a>
+        {{end}}
+
+        {{if .NextInSection}}
+          <a href="{{.NextInSection.Permalink }}" title="{{ .NextInSection.Title }} ">
+          {{ .NextInSection.Title }} &gt;
+          </a>
+        {{end}}
+
+    	</div>
+    {{ end }}
+
+  </div>
+</section>
+{{/* END CONTENT */}}
+
+{{ end }}

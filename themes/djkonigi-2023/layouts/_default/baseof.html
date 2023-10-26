@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+
+  {{/* Base Metadata */}}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+
+  {{/* Title */}}
+  <title itemprop="name">{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  <meta itemprop="name" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  <meta name="application-name" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+  <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
+
+  {{/* Description */}}
+  <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.Description }}{{ end }}{{ if .Params.summary }}{{.Title}}: {{ .Params.summary }}{{ end }}" />
+  <meta itemprop="description" content="{{ if .IsHome }}{{ .Site.Params.Description }}{{ end }}{{ if .Params.summary }}{{.Title}}: {{ .Params.summary }}{{ end }}" />
+  <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.Description }}{{ end }}{{ if .Params.summary }}{{.Title}}: {{ .Params.summary }}{{ end }}" />
+  <meta name="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.Description }}{{ end }}{{ if .Params.summary }}{{.Title}}: {{ .Params.summary }}{{ end }}" />
+
+  {{/* Links */}}
+  <base href="{{ .Permalink }}">
+  <link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+  <meta name="url" content="{{ .Permalink }}" />
+  <meta name="twitter:url" content="{{ .Permalink }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+
+  {{/* Language */}}
+  <meta property="og:locale" content="{{ .Language.Lang }}">
+  <meta name="language" content="{{ .Language.LanguageName }}">
+
+  {{/* Image */}}
+  <meta itemprop="image" content="{{ .Site.Params.ogimage | absURL }}" />
+  <meta property="og:image" content="{{ .Site.Params.ogimage | absURL }}" />
+  <meta name="twitter:image" content="{{ .Site.Params.ogimage | absURL }}" />
+  <meta name="twitter:image:src" content="{{ .Site.Params.ogimage | absURL }}" />
+
+  {{/* Date */}}
+  <meta property="og:updated_time" content={{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ .Site.BaseURL }}sitemap.xml" />
+
+  {{ with .OutputFormats.Get "RSS" }}
+    <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+    <link href="{{ .Permalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+  {{ end }}
+
+  {{/* Keywords*/}}
+  <meta name="keywords" content="{{ delimit .Keywords " , " }}">
+
+  {{/* Twitter */}}
+  <meta name="twitter:site" content="{{ .Site.Params.twitter }}">
+  <meta name="twitter:creator" content="{{ .Site.Params.twitter }}" />
+
+  {{/* Favicons */}}
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="/img/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" type="image/png" href="/img/favicons/favicon.ico" />
+
+  {{/* Styles */}}
+  {{ $options := (dict "targetPath" "css/konigi.css" "outputStyle" "compressed" "enableSourceMap" true "includePaths" (slice "node_modules/myscss")) }}
+  {{ $style := resources.Get "sass/konigi.scss" | resources.ToCSS $options | fingerprint }}
+  
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+
+  {{/* Fonts */}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  
+  {{/* AlternativeOutputFormats */}}
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+
+  {{/* Crawlers */}}
+  <meta name="robots" content="index,follow" />
+  <meta name="googlebot" content="index,follow" />
+
+  {{/* Analytics */}}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178038624-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-178038624-1');
+  </script>
+
+</head>
+
+<body class=" konigi-{{ .Kind }} {{ if .Section }} konigi-{{ .Section }}{{ end }} {{ if and (ne .Kind "home") (not .Section) }} obtg-{{ .Slug }}{{ end }}">
+
+{{/* GNAV */}}
+<header>
+
+{{ if ne .Kind "home" }}
+<header id="header">
+  <div class="container">   
+    <nav id="gnav">
+      <a role="button" class="navbar-burger burger is-hidden-tablet" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+      <div class="columns">
+        <div class="column is-2 col-logo">
+          <a href="{{ .Site.BaseURL }}" id="logo">DJ KONIGI</a>
+        </div>
+        <div class="column is-rest col-gnav">
+          <ul id="navMenu" class="is-hidden-mobile">
+            <li class="{{ if or (eq .Section "mixes") (eq .Section "mixestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}mixes/">Mixes</a></li>
+            <li class="{{ if or (eq .Section "music") (eq .Section "musictags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}music/">Music</a></li>
+            <li class="{{ if or (eq .Section "services") (eq .Section "servicestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}events/">Events</a></li>
+            <li class="{{ if or (eq .Section "services") (eq .Section "servicestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}lessons/">Lessons</a></li>
+            <li class="{{ if or (eq .Section "booking") (eq .Section "bookingtags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}booking/" class="button"><i class="fa fa-comment pr-1" aria-hidden="true"></i> Contact</a></li>
+            {{/* 
+            <li id="socmed">          
+              <a href="https://konigi.bandcamp.com/"><i class="fab fa-bandcamp"></i></a>
+              <a href="https://www.mixcloud.com/djkonigi/"><i class="fab fa-mixcloud"></i></a>
+              <a href="https://www.instagram.com/konigi/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </li>
+            */}}
+          </ul>
+        </div>
+      </div>
+    </nav>  
+  </div>
+</header>
+{{ end }}
+{{/* END GNAV */}}
+
+<div class="columns mb-0">
+{{/* BODY */}}
+<div id="body" class="column is-rest">
+
+{{/* MAIN */}}
+{{/* <div id="main"> */}}
+  {{ block "main" . }}{{ end }}
+{{/* </div> */}}
+
+{{/* END BODY */}}
+</div>
+
+{{/* END COLUMNS */}}
+</div>
+
+{{/* FOOTER */}}
+{{ block "footer" . }}
+<div id="footer">
+  <section class="section footer-links">
+    <div class="container">
+      <div class="has-text-centered mb-6">
+        <p>
+          &copy; 2007-{{ time.Now.Format "2006" }} Michael Angeles  &nbsp; &middot; &nbsp; 
+          Follow me on 
+          <a href="https://instagram.com/konigi" target="_blank">Instagram</a>, 
+          <a href="https://www.linkedin.com/in/michaelangeles/">LinkedIn</a>, 
+          <a href="https://www.mixcloud.com/djkonigi/" target="_blank">Mixcloud</a>,
+          <a href="https://soundcloud.com/konigimusic" target="_blank">Soundcloud</a>,
+          <a href="https://www.twitch.tv/djkonigi" target="_blank">Twitch</a>, 
+          <a href="https://twitter.com/konigi/" target="_blank">Twitter</a>, 
+          <a href="https://www.threads.net/@konigi" target="_blank">Threads</a>,
+          <a rel="me" href="https://mastodon.social/@konigi" target="_blank">Mastodon</a> 
+          &amp; <a href="https://www.facebook.com/djkonigi" target="_blank">Facebook</a>
+        </p>
+        <p>
+          <a href="{{ .Site.BaseURL }}/">Home</a> &nbsp; &middot; &nbsp; 
+          <a href="{{ .Site.BaseURL }}/mixes/">Mixes</a> &nbsp; &middot; &nbsp; 
+          <a href="{{ .Site.BaseURL }}/music/">Music</a> &nbsp; &middot; &nbsp;           
+          <a href="{{ .Site.BaseURL }}/events/">Events</a> &nbsp; &middot; &nbsp; 
+          <a href="{{ .Site.BaseURL }}/design/">Lessons</a> &nbsp; &middot; &nbsp; 
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHve_3pTqk7KtbmRcHhqGFh3_eQGckqj2bR97e9pbipTbOGw/viewform?usp=sf_link"  target="_blank">Contact me</a>          
+        </p>
+      </div>{{/* END COLUMNS */}}
+    </div>{{/* END CONTAINER */}}
+  </section>
+</div>
+{{ end }}
+{{/* END FOOTER */}}
+
+<script src="/js/konigi.js?{{ now.Unix }}"></script>
+<script src="https://kit.fontawesome.com/4f920426c1.js" crossorigin="anonymous"></script>
+</body>
+</html>
