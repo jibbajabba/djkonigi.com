@@ -1,0 +1,22 @@
++++
+title = "Events"
+description = ""
+tags = []
+date = "2012-03-07"
+categories = ["page"]
+slug = "events"
++++
+
+<section class="section boxgrid">
+  <div class="container">
+    <div class="columns entries dark is-multiline">
+      <div class="column is-four-fifths">
+        <div class="columns is-multiline">
+            This section is under construction.
+        </div>
+      </div>{{/* /column */}}
+      <div class="column is-one-fifth sidebar">
+        {{ partial "djsets-sidebar.html" . }}
+      </div>{{/* /column */}}      
+  </div>{{/* /container */}}
+</section>

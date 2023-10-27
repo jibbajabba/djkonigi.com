@@ -133,7 +133,7 @@
             <li class="{{ if or (eq .Section "mixes") (eq .Section "mixestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}mixes/">Mixes</a></li>
             <li class="{{ if or (eq .Section "music") (eq .Section "musictags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}music/">Music</a></li>
             <li class="{{ if or (eq .Section "services") (eq .Section "servicestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}events/">Events</a></li>
-            <li class="{{ if or (eq .Section "services") (eq .Section "servicestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}lessons/">Lessons</a></li>
+            {{/* <li class="{{ if or (eq .Section "lessons") (eq .Section "lessonstags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}lessons/">Lessons</a></li> */}}
             <li class="{{ if or (eq .Section "booking") (eq .Section "bookingtags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}booking/" class="button"><i class="fa fa-comment pr-1" aria-hidden="true"></i> Contact</a></li>
             {{/* 
             <li id="socmed">          
@@ -173,7 +173,7 @@
     <div class="container">
       <div class="has-text-centered mb-6">
         <p>
-          &copy; 2007-{{ time.Now.Format "2006" }} Michael Angeles  &nbsp; &middot; &nbsp; 
+          &copy; 2007-{{ time.Now.Format "2006" }} <a href="https://konigi.com">Michael Angeles</a>a>  &nbsp; &middot; &nbsp; 
           Follow me on 
           <a href="https://instagram.com/konigi" target="_blank">Instagram</a>, 
           <a href="https://www.linkedin.com/in/michaelangeles/">LinkedIn</a>, 
@@ -190,7 +190,7 @@
           <a href="{{ .Site.BaseURL }}/mixes/">Mixes</a> &nbsp; &middot; &nbsp; 
           <a href="{{ .Site.BaseURL }}/music/">Music</a> &nbsp; &middot; &nbsp;           
           <a href="{{ .Site.BaseURL }}/events/">Events</a> &nbsp; &middot; &nbsp; 
-          <a href="{{ .Site.BaseURL }}/design/">Lessons</a> &nbsp; &middot; &nbsp; 
+          {{/* <a href="{{ .Site.BaseURL }}/design/">Lessons</a> &nbsp; &middot; &nbsp; */}}
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHve_3pTqk7KtbmRcHhqGFh3_eQGckqj2bR97e9pbipTbOGw/viewform?usp=sf_link"  target="_blank">Contact me</a>          
         </p>
       </div>{{/* END COLUMNS */}}
