@@ -16,4 +16,3 @@ slug = "booking"
 
 </div>
 </div>
-

@@ -110,7 +110,7 @@
 
 </head>
 
-<body class=" konigi-{{ .Kind }} {{ if .Section }} konigi-{{ .Section }}{{ end }} {{ if and (ne .Kind "home") (not .Section) }} obtg-{{ .Slug }}{{ end }}">
+<body class=" konigi-{{ .Kind }} {{ if .Section }} konigi-{{ .Section }}{{ end }} {{ if and (ne .Kind "home") (not .Section) }} konigi-{{ .Slug }}{{ end }}">
 
 {{/* GNAV */}}
 <header>
@@ -132,7 +132,7 @@
           <ul id="navMenu" class="is-hidden-mobile">
             <li class="{{ if or (eq .Section "mixes") (eq .Section "mixestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}mixes/">Mixes</a></li>
             <li class="{{ if or (eq .Section "music") (eq .Section "musictags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}music/">Music</a></li>
-            <li class="{{ if or (eq .Section "services") (eq .Section "servicestags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}events/">Events</a></li>
+            <li class="{{ if or (eq .Section "events") (eq .Section "eventstags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}events/">Events</a></li>
             {{/* <li class="{{ if or (eq .Section "lessons") (eq .Section "lessonstags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}lessons/">Lessons</a></li> */}}
             <li class="{{ if or (eq .Section "booking") (eq .Section "bookingtags") }} active{{ end }}"><a href="{{ .Site.BaseURL }}booking/" class="button"><i class="fa fa-comment pr-1" aria-hidden="true"></i> Contact</a></li>
             {{/* 
