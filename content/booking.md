@@ -14,7 +14,7 @@ slug = "booking"
 
 <p>Want to get in touch? Our assistants are ready to deliver your message.</p>
 
-<p><a href="mailto:hi@konigi.com" class="button is-medium">Contact me by email</a></p>
+<p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfHve_3pTqk7KtbmRcHhqGFh3_eQGckqj2bR97e9pbipTbOGw/viewform" class="button is-medium">Contact me by email</a></p>
 
 </div>
 </div>
