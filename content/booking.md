@@ -8,11 +8,13 @@ slug = "booking"
 +++
 
 <div class="columns is-centered">
-<div class="column is-half is-size-4">
+<div class="column is-one-third is-size-4">
 
-<p>Want to get in touch? Our unicorn couriers are ready to deliver your message.</p>
+<img src="/img/cat-dj-disco-party.gif">
 
-<p><a href="mailto:hi@konigi.com">Contact me by email</a> .</p>
+<p>Want to get in touch? Our assistants are ready to deliver your message.</p>
+
+<p><a href="mailto:hi@konigi.com" class="button is-medium">Contact me by email</a></p>
 
 </div>
 </div>
