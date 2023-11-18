@@ -389,6 +389,9 @@ a.button {
     border-color: rgba(219,122,166,.5);
     text-decoration: none !important;
   }
+  &.is-dark {
+    color: $graypale !important;
+  }
 }
 
 // AUDIO PLAYER
