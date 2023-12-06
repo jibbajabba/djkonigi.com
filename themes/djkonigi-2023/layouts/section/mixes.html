@@ -14,16 +14,13 @@
 <section class="section boxgrid">
   <div class="container">
     <div class="columns entries dark is-multiline">
-      <div class="column is-four-fifths">
+      <div class="column is-full">
         <div class="columns is-multiline">
         {{ range .Paginator.Pages }}
           {{ .Render "blocks-in-section-narrow"}}
         {{ end }}
         </div>
-      </div>{{/* /column */}}
-      <div class="column is-one-fifth sidebar">
-        {{ partial "djsets-sidebar.html" . }}
-      </div>{{/* /column */}}      
+      </div>{{/* /column */}} 
   </div>{{/* /container */}}
 </section>
 <section class="section pagination index">
